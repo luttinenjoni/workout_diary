@@ -1,12 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Dropdown } from 'react-native-paper-dropdown';
+import { Provider as PaperProvider } from 'react-native-paper';
+import {Pstyles} from './styles/Styles.js'
+
+const STYPES = [
+  { label: 'Ball games', value: 'bgames' },
+  { label: 'Gym', value: 'gym' },
+]
 
 export default function App() {
+  const [stype, setStype] = useState();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <SafeAreaView style={styles.container}>
+        <Dropdown
+          placeholder='Select sport type'
+          label='sport type'
+          options={STYPES}
+          value={stype}
+          onSelect={setStype}
+        />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </PaperProvider>
+    
   );
 }
 
